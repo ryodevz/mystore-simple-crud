@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+body {
+  padding: 50px 0;
+  font-family: Nunito, sans-serif;
+  background-color: #aeaeae;
+}
+
+* {
+  text-decoration: none;
+}
+
+.bg-blue {
+  background-color: #3490dc;
+}
+
+.bg-green {
+  background-color: #38c172;
+}
+
+.bg-warning {
+  background: #f6993f;
+}
+
+.bg-danger {
+  background: #e3342f;
+}
+
+.text-red {
+  color: #e3342f;
+}
+
+.text-light {
+  color: white;
+}
+
+.wrapping {
+  padding: 0 30px;
+}
+
+.form-control {
+  padding: 10px;
+  min-width: 40%;
+}
+
+.alert {
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+.mb-1 {
+  margin-bottom: 10px;
+}
+
+.mb-2 {
+  margin-bottom: 20px;
+}
+
+.mb-3 {
+  margin-bottom: 30px;
+}
+
+.mb-4 {
+  margin-bottom: 40px;
+}
+
+.mb-5 {
+  margin-bottom: 50px;
+}
+
+.btn {
+  padding: 5px 10px;
+  color: white;
+  border: 0px;
+}
+
+.text-start {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-end {
+  text-align: right;
+}
+
+.table {
+  border-collapse: collapse;
+}
+
+.table tr th {
+  padding: 15px 20px;
+}
+
+.table tr td {
+  text-align: center;
+  padding: 15px;
+}
+
+.container {
+  width: 900px;
+  margin: auto;
+  background-color: #f8fafc;
+}
+
+.container .border {
+  border: 1px solid lightskyblue;
+  margin-bottom: 10px;
+}
+
+.container .header {
+  padding: 20px;
+  background-color: #f8fafc;
+}
+
+.container .header ul {
+  margin-top: 20px;
+}
+
+.container .header ul li {
+  list-style: none;
+  display: inline-block;
+}
+
+.container .header ul li a {
+  color: #3490dc;
+  padding: 10px;
+}
+
+.container .header ul li a:hover {
+  color: #f8fafc;
+  padding: 10px;
+  background-color: salmon;
+}
+
+.container .content .content-title {
+  margin-bottom: 10px;
+}
+
+.container .content .content-body p {
+  margin: 10px 0;
+}
+
+.container .footer {
+  text-align: center;
+  padding: 50px 0;
+}
+
+.container .footer p a {
+  color: #3490dc;
+}
+/*# sourceMappingURL=app.css.map */
