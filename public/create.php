@@ -1,7 +1,20 @@
 <?php
 
-require_once 'helpers.php';
-$db = require_once 'connection.php';
+/*
+|--------------------------------------------------------------------------
+| Author
+|--------------------------------------------------------------------------
+|
+| Name: Ryo ID
+| Repo: https://github.com/ryodevz/mystore-simple-crud
+|
+*/
+
+use Illuminate\Support\Database;
+
+require_once '../bootstrap/core.php';
+
+allowedMethods(['GET', 'POST'], true);
 
 if (isset($_POST['btn-submit'])) {
 
@@ -18,7 +31,7 @@ if (isset($_POST['btn-submit'])) {
     $status = validate([
         [
             'name' => 'nama',
-            'rules' => 'min:3|required',
+            'rules' => 'required|min:3',
         ],
         [
             'name' => 'jenis',
@@ -45,16 +58,16 @@ if (isset($_POST['btn-submit'])) {
     unset($item['btn-submit']);
 
     if ((isset($status['status']) ? $status['status'] : false)) {
-        query("INSERT INTO `barang` (`id`, `nama`, `jenis`, `stok`, `harga_beli`, `harga_jual`, `expired`, `ket_barang`) VALUES (NULL, '$nama', '$jenis', '$stok', '$harga_beli', '$harga_jual', '$expired', '$ket_barang')");
+        Database::query("INSERT INTO `barang` (`id`, `nama`, `jenis`, `stok`, `harga_beli`, `harga_jual`, `expired`, `ket_barang`) VALUES (NULL, '$nama', '$jenis', '$stok', '$harga_beli', '$harga_jual', '$expired', '$ket_barang')");
 
         return redirect('/?action=create&status=success');
     }
 }
 
 ?>
-<?php include 'components/header.php' ?>
+<?php component('header') ?>
 <div class="content wrapping">
-    <h3 class="content-title">Create</h3>
+    <h3 class="content-title"><?= ___('Create') ?></h3>
     <?php if (firstError()) : ?>
         <div class="mb-2">
             <p class="text-red"><?= firstError() ?></p>
@@ -107,4 +120,4 @@ if (isset($_POST['btn-submit'])) {
         </div>
     </form>
 </div>
-<?php include 'components/footer.php' ?>
+<?php component('footer') ?>

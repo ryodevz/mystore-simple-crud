@@ -2,11 +2,18 @@
 
 /*
 |--------------------------------------------------------------------------
-| APP
+| Author
 |--------------------------------------------------------------------------
+|
+| Name: Ryo ID
+| Repo: https://github.com/ryodevz/mystore-simple-crud
 |
 */
 
-return [
-    'name' => 'My Store',
-];
+class A
+{
+    public function test()
+    {
+        return $this;
+    }
+}

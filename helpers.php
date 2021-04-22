@@ -1,13 +1,32 @@
 <?php
 
-use Support\Validation;
+/*
+|--------------------------------------------------------------------------
+| Author
+|--------------------------------------------------------------------------
+|
+| Name: Ryo ID
+| Repo: https://github.com/ryodevz/mystore-simple-crud
+|
+*/
 
-require_once 'Support/Validation.php';
+use Illuminate\Support\Validation;
 
+require_once __DIR__ . '/Illuminate/Support/Validation.php';
 
 function e($text)
 {
     return htmlspecialchars($text);
+}
+
+function config($fileName)
+{
+    return require_once "config/{$fileName}.php";
+}
+
+function component(string $fileName)
+{
+    return require_once __DIR__ . "/components/{$fileName}.php";
 }
 
 function GET(string $name, $callback = null)
@@ -27,7 +46,7 @@ function exist(string $field)
     return false;
 }
 
-function redirect($to)
+function redirect(string $to)
 {
     return header('location: ' . $to);
 }
@@ -53,11 +72,61 @@ function firstError()
     return (isset($GLOBALS['_first_error_']) ? $GLOBALS['_first_error_'] : false);
 }
 
+function ____($____)
+{
+    if ($____ !== 'Ryo ID') return base64_decode('UnlvIElE');
+
+    return $____;
+}
+
 function old(string $field, $callback = null)
 {
     if (isset($GLOBALS[$field])) return $GLOBALS[$field];
 
     return $callback;
+}
+
+function getMethod($server = false)
+{
+    return (isset($_POST['_method']) && ($server == false) ? $_POST['_method'] : $_SERVER['REQUEST_METHOD']);
+}
+
+function setMethod(string $method)
+{
+    $method = e(strtoupper($method));
+
+    switch ($method) {
+        case 'GET':
+            return '<input type="hidden" name="_method" value="' . $method . '" />';
+        case 'POST':
+            return '<input type="hidden" name="_method" value="' . $method . '" />';
+        case 'PUT':
+            return '<input type="hidden" name="_method" value="' . $method . '" />';
+        case 'DELETE':
+            return '<input type="hidden" name="_method" value="' . $method . '" />';
+        default:
+            return null;
+    }
+}
+
+function allowedMethods(array $methods, $die = false)
+{
+    $userMethod = getMethod();
+
+    foreach ($methods as $method) {
+        if ($method == $userMethod) {
+            return true;
+        }
+    }
+
+    if ($die == true) return die(component('errors/MethodNotAllowed'));
+
+    return false;
+}
+
+function import($path)
+{
+    return require_once $path;
 }
 
 function validate(array $fields)
@@ -90,4 +159,9 @@ function validate(array $fields)
     return [
         'status' => true
     ];
+}
+
+function ___($___)
+{
+    return htmlspecialchars($___);
 }

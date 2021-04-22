@@ -1,10 +1,20 @@
 <?php
 
-namespace Support;
+/*
+|--------------------------------------------------------------------------
+| Author
+|--------------------------------------------------------------------------
+|
+| Name: Ryo ID
+| Repo: https://github.com/ryodevz/mystore-simple-crud
+|
+*/
+
+namespace Illuminate\Support;
 
 class Validation
 {
-    public static function required($field, $value)
+    public function required($field, $value)
     {
         if ($value) return ['status' => true];
 

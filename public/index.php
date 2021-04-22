@@ -1,14 +1,27 @@
 <?php
 
-require_once 'helpers.php';
-require_once 'connection.php';
+/*
+|--------------------------------------------------------------------------
+| Author
+|--------------------------------------------------------------------------
+|
+| Name: Ryo ID
+| Repo: https://github.com/ryodevz/mystore-simple-crud
+|
+*/
 
-$items = query('SELECT * FROM barang ORDER BY id DESC');
+use Illuminate\Support\Database;
+
+require_once '../bootstrap/core.php';
+
+allowedMethods(['GET'], true);
+
+$items = Database::query('SELECT * FROM barang ORDER BY id DESC');
 
 ?>
-<?php include 'components/header.php' ?>
+<?php component('header') ?>
 <div class="content wrapping">
-    <h3 class="content-title">Data Barang</h3>
+    <h3 class="content-title"><?= ___('Data Barang') ?></h3>
     <div class="content-body">
         <?php if (isset($_GET['status'])) : ?>
             <?php if ($_GET['action'] == 'delete') : ?>
@@ -42,8 +55,11 @@ $items = query('SELECT * FROM barang ORDER BY id DESC');
                         <td><?= e($item['stok']) ?></td>
                         <td><?= e($item['expired']) ?></td>
                         <td>
+                            <form action="/destroy.php?id=<?= e($item['id']) ?>" method="POST" style="display: inline;">
+                                <?= setMethod('delete') ?>
+                                <button type="submit" class="btn bg-danger">Hapus</button>
+                            </form>
                             <a href="/edit.php?id=<?= e($item['id']) ?>" class="btn bg-warning">Edit</a>
-                            <a href="/delete.php?id=<?= e($item['id']) ?>" class="btn bg-danger">Hapus</a>
                         </td>
                     </tr>
                 <?php endforeach ?>
@@ -51,4 +67,4 @@ $items = query('SELECT * FROM barang ORDER BY id DESC');
         </table>
     </div>
 </div>
-<?php include 'components/footer.php' ?>
+<?php component('footer') ?>

@@ -1,7 +1,20 @@
 <?php
 
-require_once 'helpers.php';
-require_once 'connection.php';
+/*
+|--------------------------------------------------------------------------
+| Author
+|--------------------------------------------------------------------------
+|
+| Name: Ryo ID
+| Repo: https://github.com/ryodevz/mystore-simple-crud
+|
+*/
+
+use Illuminate\Support\Database;
+
+require_once '../bootstrap/core.php';
+
+allowedMethods(['GET', 'POST'], true);
 
 $status_____ = false;
 
@@ -49,23 +62,23 @@ if (isset($_POST['btn-submit'])) {
     unset($item['btn-submit']);
 
     if ((isset($status['status']) ? $status['status'] : false)) {
-        query("UPDATE `barang` SET `nama` = '$nama', `jenis` = '$jenis', `stok` = '$stok', `harga_beli` = '$harga_beli', `harga_jual` = '$harga_jual', `expired` = '$expired', `ket_barang` = '$ket_barang' WHERE `barang`.`id` = $id");
+        Database::query("UPDATE `barang` SET `nama` = '$nama', `jenis` = '$jenis', `stok` = '$stok', `harga_beli` = '$harga_beli', `harga_jual` = '$harga_jual', `expired` = '$expired', `ket_barang` = '$ket_barang' WHERE `barang`.`id` = $id");
 
         $status_____ = true;
     }
 } else {
     $id = e((int)$_GET['id'] ?? null);
 
-    $item = query("SELECT * FROM barang WHERE id = $id")->fetch_assoc();
+    $item = Database::query("SELECT * FROM barang WHERE id = $id")->fetch_assoc();
 
     if (!($item)) return die('Barang tidak di temukan.');
 }
 
-
 ?>
-<?php include 'components/header.php' ?>
+
+<?php component('header') ?>
 <div class="content wrapping">
-    <h3 class="content-title">Data</h3>
+    <h3 class="content-title"><?= ___('Data') ?></h3>
     <?php if (firstError()) : ?>
         <div class="mb-2">
             <p class="text-red"><?= firstError() ?></p>
@@ -123,4 +136,4 @@ if (isset($_POST['btn-submit'])) {
         </div>
     </form>
 </div>
-<?php include 'components/footer.php' ?>
+<?php component('footer') ?>

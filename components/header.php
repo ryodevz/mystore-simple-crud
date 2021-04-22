@@ -1,6 +1,6 @@
 <?php
 
-$app = include 'config/app.php';
+$app = require_once __DIR__ . '/../config/app.php';
 
 ?>
 <!DOCTYPE html>
@@ -17,14 +17,14 @@ $app = include 'config/app.php';
 
 </head>
 
-<body>
+<body id="app">
 
     <div class="container">
         <div class="header">
             <h1><?= $app['name'] ?></h1>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/create.php">Tambah</a></li>
+                <li><a href="/"><?= ___('Home') ?></a></li>
+                <li><a href="/create.php"><?= ___('Tambah') ?></a></li>
             </ul>
         </div>
 
