@@ -25,3 +25,11 @@ require_once __DIR__ . '/../helpers.php';
 |
 */
 require_once __DIR__ . '/../Illuminate/Support/Database.php';
+
+/*
+|--------------------------------------------------------------------------
+| Req
+|--------------------------------------------------------------------------
+|
+*/
+if (getV() < base64_decode('Ny40LjE1')) return die('VGhlIG1pbmltdW0gcGhwIHZlcnNpb24gcmVxdWlyZWQgdG8gcnVuIHRoaXMgYXBwbGljYXRpb24gaXMgNy40LjE1');

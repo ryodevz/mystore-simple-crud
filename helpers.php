@@ -46,6 +46,11 @@ function exist(string $field)
     return false;
 }
 
+function getV()
+{
+    return (phpversion() ?? 0);
+}
+
 function redirect(string $to)
 {
     return header('location: ' . $to);

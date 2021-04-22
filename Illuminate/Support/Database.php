@@ -14,16 +14,16 @@ namespace Illuminate\Support;
 
 class Database
 {
-    private static $filename = 'database';
+    private static $_____ = 'database';
 
-    public static function query($query)
+    public static function query($___)
     {
-        return self::connection()->query($query);
+        return self::_()->query($___);
     }
 
-    public static function connection()
+    public static function _()
     {
-        $database  = config(self::$filename);
+        $database  = config(self::$_____);
 
         return new \mysqli($database['host'], $database['username'], $database['password'], $database['database']);
     }
