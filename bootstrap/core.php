@@ -28,4 +28,4 @@ foreach (glob(__DIR__ . '/../Illuminate/Support/*.php') as $support) {
     require_once $support;
 }
 
-if (phpversion() < base64_decode('Ny40LjE1')) return die(base64_decode('VGhlIG1pbmltdW0gcGhwIHZlcnNpb24gcmVxdWlyZWQgdG8gcnVuIHRoaXMgYXBwbGljYXRpb24gaXMgNy40LjA='));
+if (getV() < base64_decode('Ny40LjE1')) return die(base64_decode('VGhlIG1pbmltdW0gcGhwIHZlcnNpb24gcmVxdWlyZWQgdG8gcnVuIHRoaXMgYXBwbGljYXRpb24gaXMgNy40LjA='));
