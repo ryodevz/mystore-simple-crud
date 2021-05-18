@@ -10,11 +10,17 @@
 |
 */
 
+use Illuminate\Support\Auth;
 use Illuminate\Support\Database;
 
 require_once '../bootstrap/core.php';
-
 allowedMethods(['GET', 'POST'], true);
+
+Auth::start();
+
+if (!Auth::check()) {
+    return redirect('/auth/login.php');
+}
 
 $status_____ = false;
 
@@ -27,15 +33,15 @@ if (isset($_POST['btn-submit'])) {
     $nama = $item['nama'];
     $jenis = $item['jenis'];
     $stok = (int)$item['stok'];
-    $harga_beli = (int)$item['harga_beli'];
-    $harga_jual = (int)$item['harga_jual'];
+    $harga_beli = $item['harga_beli'];
+    $harga_jual = $item['harga_jual'];
     $expired = $item['expired'];
     $ket_barang = $item['ket_barang'];
 
     $status = validate([
         [
             'name' => 'nama',
-            'rules' => 'min:3|required',
+            'rules' => 'required|min:3',
         ],
         [
             'name' => 'jenis',
@@ -47,11 +53,11 @@ if (isset($_POST['btn-submit'])) {
         ],
         [
             'name' => 'harga_beli',
-            'rules' => 'required|integer',
+            'rules' => 'required',
         ],
         [
             'name' => 'harga_jual',
-            'rules' => 'required|integer',
+            'rules' => 'required',
         ],
         [
             'name' => 'expired',
@@ -62,7 +68,8 @@ if (isset($_POST['btn-submit'])) {
     unset($item['btn-submit']);
 
     if ((isset($status['status']) ? $status['status'] : false)) {
-        Database::query("UPDATE `barang` SET `nama` = '$nama', `jenis` = '$jenis', `stok` = '$stok', `harga_beli` = '$harga_beli', `harga_jual` = '$harga_jual', `expired` = '$expired', `ket_barang` = '$ket_barang' WHERE `barang`.`id` = $id");
+
+        $response = Database::query("UPDATE `barang` SET `nama` = '$nama', `jenis` = '$jenis', `stok` = '$stok', `harga_beli` = '$harga_beli', `harga_jual` = '$harga_jual', `expired` = '$expired', `ket_barang` = '$ket_barang' WHERE `barang`.`id` = $id");
 
         $status_____ = true;
     }
@@ -110,12 +117,12 @@ if (isset($_POST['btn-submit'])) {
             <tr class="text-start">
                 <th>Harga beli</th>
                 <td>:</td>
-                <td><input type="number" class="form-control" name="harga_beli" value="<?= e((old('harga_beli') ?? $item['harga_beli'])) ?>"></td>
+                <td><input type="text" class="form-control" name="harga_beli" value="<?= e((old('harga_beli') ?? $item['harga_beli'])) ?>"></td>
             </tr>
             <tr class="text-start">
                 <th>Harga jual</th>
                 <td>:</td>
-                <td><input type="number" class="form-control" name="harga_jual" value="<?= e((old('harga_jual') ?? $item['harga_jual'])) ?>"></td>
+                <td><input type="text" class="form-control" name="harga_jual" value="<?= e((old('harga_jual') ?? $item['harga_jual'])) ?>"></td>
             </tr>
             <tr class="text-start">
                 <th>Kadaluarsa</th>

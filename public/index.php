@@ -10,11 +10,17 @@
 |
 */
 
+use Illuminate\Support\Auth;
 use Illuminate\Support\Database;
 
 require_once '../bootstrap/core.php';
-
 allowedMethods(['GET'], true);
+
+Auth::start();
+
+if (!Auth::check()) {
+    return redirect('/auth/login.php');
+}
 
 $items = Database::query('SELECT * FROM barang ORDER BY id DESC');
 
@@ -41,7 +47,9 @@ $items = Database::query('SELECT * FROM barang ORDER BY id DESC');
                     <th>Nama</th>
                     <th>Jenis</th>
                     <th>Stok</th>
-                    <th>Kadaluarsa</th>
+                    <th>Harga jual</th>
+                    <th>Harga beli</th>
+                    <th>Gambar</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -53,13 +61,17 @@ $items = Database::query('SELECT * FROM barang ORDER BY id DESC');
                         <td><?= e($item['nama']) ?></td>
                         <td><?= e($item['jenis']) ?></td>
                         <td><?= e($item['stok']) ?></td>
-                        <td><?= e($item['expired']) ?></td>
+                        <td><?= e($item['harga_jual']) ?></td>
+                        <td><?= e($item['harga_beli']) ?></td>
+                        <td>
+                            <img src="<?= $item['image'] ?>" width="50px" />
+                        </td>
                         <td>
                             <form action="/destroy.php?id=<?= e($item['id']) ?>" method="POST" style="display: inline;">
                                 <?= setMethod('delete') ?>
-                                <button type="submit" class="btn bg-danger">Hapus</button>
+                                <button type="submit" class="btn bg-danger"><i class="fa fa-trash"></i></button>
                             </form>
-                            <a href="/edit.php?id=<?= e($item['id']) ?>" class="btn bg-warning">Edit</a>
+                            <a href="/edit.php?id=<?= e($item['id']) ?>" class="btn bg-warning"><i class="fa fa-edit"></i></a>
                         </td>
                     </tr>
                 <?php endforeach ?>

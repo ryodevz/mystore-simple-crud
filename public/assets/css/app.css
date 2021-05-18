@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Nunito");
+
 body {
   padding: 50px 0;
   font-family: Nunito, sans-serif;
@@ -90,12 +91,12 @@ body {
 }
 
 .table tr th {
-  padding: 15px 20px;
+  padding: 10px 10px;
 }
 
 .table tr td {
   text-align: center;
-  padding: 15px;
+  padding: 10px;
 }
 
 .container {
@@ -150,4 +151,5 @@ body {
 .container .footer p a {
   color: #3490dc;
 }
+
 /*# sourceMappingURL=app.css.map */

@@ -24,6 +24,13 @@ function config($fileName)
     return require_once "config/{$fileName}.php";
 }
 
+function url($path = '')
+{
+    $config = config('app');
+
+    return $config['url'] . $path;
+}
+
 function component(string $fileName)
 {
     return require_once __DIR__ . "/components/{$fileName}.php";
@@ -152,11 +159,11 @@ function validate(array $fields)
 
                 $GLOBALS['_first_error_'] = $response['message'];
 
-                return [
-                    'error' => [
-                        $field['name'] => $response['message']
-                    ]
-                ];
+                // return [
+                //     'error' => [
+                //         $field['name'] => $response['message']
+                //     ]
+                // ];
             }
         }
     }
@@ -169,4 +176,9 @@ function validate(array $fields)
 function ___($___)
 {
     return htmlspecialchars($___);
+}
+
+function setError($message)
+{
+    return $GLOBALS['_first_error_'] = $message;
 }

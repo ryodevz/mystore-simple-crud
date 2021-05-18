@@ -2,6 +2,8 @@
 
 $app = require_once __DIR__ . '/../config/app.php';
 
+require_once '../bootstrap/core.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +27,7 @@ $app = require_once __DIR__ . '/../config/app.php';
             <ul>
                 <li><a href="/"><?= ___('Home') ?></a></li>
                 <li><a href="/create.php"><?= ___('Tambah') ?></a></li>
+                <li><a href="/auth/logout.php"><?= ___('Logout') ?></a></li>
             </ul>
         </div>
 

@@ -10,11 +10,17 @@
 |
 */
 
+use Illuminate\Support\Auth;
 use Illuminate\Support\Database;
 
 require_once '../bootstrap/core.php';
-
 allowedMethods(['DELETE'], true);
+
+Auth::start();
+
+if (!Auth::check()) {
+    return redirect('/auth/login.php');
+}
 
 $item_id = e((int)$_GET['id'] ?? null);
 
