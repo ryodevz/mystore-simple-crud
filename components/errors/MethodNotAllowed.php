@@ -12,7 +12,7 @@
 
     <h1><?= ___('Method Not Allowed') ?></h1>
 
-    <p><?= ___('Back to') ?> <a href="<?= ___('/') ?>"><?= ___('Home') ?></a></p>
+    <p><?= ___('Back to') ?> <a href="/"><?= ___('Home') ?></a></p>
 
 </body>
 
